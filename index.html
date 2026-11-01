@@ -179,6 +179,18 @@
       background-color: currentColor;
     }
 
+    /* Bullet List Styling */
+    .bullet-list {
+      padding-left: 20px;
+      margin-top: 8px;
+      margin-bottom: 16px;
+    }
+
+    .bullet-list li {
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+
     /* Favorite Monster Badges */
     .badge-container {
       display: flex;
@@ -239,7 +251,7 @@
       <div class="glass-card" style="border-left: 4px solid #ffea00;">
         <div style="display: flex; justify-content: space-between; font-size: 0.8rem; margin-bottom: 8px;">
           <span style="font-weight: bold; color: #ffea00; text-transform: uppercase;">Latest Post</span>
-          <span class="text-slate">Just now</span>
+          <span class="text-slate post-date" data-timestamp="2026-11-01T09:00:00Z">just now</span>
         </div>
         <p class="text-slate" style="margin: 0; line-height: 1.6; font-size: 0.95rem;">
           Welcome to the new site! Keeping my torches lit daily and updating priorities whenever breeding events change. Check back here for quick status notes!
@@ -267,7 +279,7 @@
         <div class="glass-card">
           <h3 class="font-fredoka text-yellow" style="margin-top: 0; margin-bottom: 12px; font-size: 1.3rem;">📅 Lighting Schedule</h3>
           <div style="background-color: rgba(46, 16, 101, 0.5); padding: 12px; border-radius: 10px; border: 1px solid rgba(168, 85, 247, 0.2); font-size: 0.85rem; display: flex; justify-content: space-between;">
-            <span>Lighting Hours (UTC-04:00):</span>
+            <span>Lighting Hours (UTC−04:00 / Eastern Time):</span>
             <span class="text-yellow" style="font-weight: bold;">4:00 PM - 9:00 PM</span>
           </div>
         </div>
@@ -276,7 +288,7 @@
       <!-- Priority Islands -->
       <div class="glass-card">
         <h3 class="font-fredoka text-yellow" style="margin-top: 0; margin-bottom: 15px; font-size: 1.3rem;">
-          📋 Priority Islands <span style="font-size: 0.8rem; font-weight: normal; color: #cbd5e1;">(If i'm not highlighted.)</span>
+          📋 Which of my islands to light <span style="font-size: 0.8rem; font-weight: normal; color: #cbd5e1;">(If i'm not highlighted.)</span>
         </h3>
 
         <div class="grid-3">
@@ -308,9 +320,30 @@
         <!-- Big Card: Me and Torch-lighting (Left) -->
         <div class="glass-card">
           <h3 class="font-fredoka text-yellow" style="margin-top: 0; margin-bottom: 12px; font-size: 1.4rem;">Me and Torch-lighting</h3>
-          <p class="text-slate" style="line-height: 1.6; font-size: 0.9rem; margin-bottom: 20px;">
-            I like My Singing Monsters, so I play a lot. That means I'll be lighting torches everyday, I just ask for some lighting from you! My time-zone is UTC−04:00. I play MSM hourly so it's easier to multiple people's torches, I try to keep an equal amount of people lit for each hour so it all goes by smoothly and I don't dread an hour coming by. That DOES mean I may push back certain people an hour or many more when it's night for me, 'cause I need to sleep as well and do school. I'm up at six, get home by 2-3 PM, and start lighting by 4PM 'till 9. So, I might not light a torch for a day. As long as you keep lighting mines or I feel that you are a consistent player, I should be lighting yours back, so, stay gold. That or I didn't pay much mind to your lighting stats or whatever. I ask that you highlight torches for my sake, if not, it gives me an excuse to come on over and up-vote your island. I'll also light certain islands based on if I recall there's any special monsters available to breed at the moment.
+          
+          <p class="text-slate" style="line-height: 1.6; font-size: 0.9rem; margin-bottom: 10px;">
+            I like My Singing Monsters, so I play a lot. That means I'll be lighting torches everyday, I just ask for some lighting from you!
           </p>
+
+          <h4 class="font-fredoka text-yellow" style="margin-bottom: 4px; font-size: 1rem;">My schedule</h4>
+          <ul class="text-slate bullet-list" style="font-size: 0.88rem;">
+            <li>My time-zone is UTC−04:00 (Eastern Time) and I light from 4:00 PM to 9:00 PM.</li>
+            <li>I play MSM hourly so it's easier to hit multiple people's torches, and I try to keep an equal amount of people lit for each hour so it all goes by smoothly and I don't dread an hour coming by.</li>
+            <li>That DOES mean I may push back certain people an hour or many more when it's night for me, 'cause I need to sleep as well and do school. I'm up at six, get home by 2-3 PM, and start lighting by 4 PM 'till 9.</li>
+          </ul>
+
+          <h4 class="font-fredoka text-yellow" style="margin-bottom: 4px; font-size: 1rem;">Who I light back</h4>
+          <ul class="text-slate bullet-list" style="font-size: 0.88rem;">
+            <li>As long as you keep lighting mine or I feel that you are a consistent player, I should be lighting yours back, so, stay gold.</li>
+            <li>So, I might not light a torch for a day. That or I didn't pay much mind to your lighting stats or whatever.</li>
+            <li>I'll also light certain islands based on if I recall there's any special monsters available to breed at the moment.</li>
+          </ul>
+
+          <h4 class="font-fredoka text-yellow" style="margin-bottom: 4px; font-size: 1rem;">How you can help</h4>
+          <ul class="text-slate bullet-list" style="font-size: 0.88rem; margin-bottom: 20px;">
+            <li>I ask that you highlight torches for my sake.</li>
+            <li>If not, it gives me an excuse to come on over and up-vote your island.</li>
+          </ul>
 
           <div style="border-top: 1px solid rgba(168, 85, 247, 0.3); padding-top: 14px;">
             <span style="font-size: 0.75rem; font-weight: bold; color: #ffea00; text-transform: uppercase;">FAVORITE MONSTER</span>
@@ -343,7 +376,7 @@
 
   </main>
 
-  <!-- Script for UTC-04:00 Auto Sleep Switch -->
+  <!-- Script for UTC-04:00 Auto Sleep Switch & Dynamic Post Dates -->
   <script>
     function updateStatus() {
       const now = new Date();
@@ -363,8 +396,40 @@
       }
     }
 
+    function updatePostDates() {
+      const dateElements = document.querySelectorAll('.post-date');
+      const now = new Date();
+
+      dateElements.forEach(el => {
+        const timestampStr = el.getAttribute('data-timestamp');
+        if (!timestampStr) return;
+        
+        const postDate = new Date(timestampStr);
+        const diffInSeconds = Math.floor((now - postDate) / 1000);
+
+        if (diffInSeconds < 10) {
+          el.innerText = 'just now';
+        } else if (diffInSeconds < 60) {
+          el.innerText = `${diffInSeconds} seconds ago`;
+        } else if (diffInSeconds < 3600) {
+          const mins = Math.floor(diffInSeconds / 60);
+          el.innerText = `${mins} ${mins === 1 ? 'minute' : 'minutes'} ago`;
+        } else if (diffInSeconds < 86400) {
+          const hours = Math.floor(diffInSeconds / 3600);
+          el.innerText = `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
+        } else {
+          const month = String(postDate.getMonth() + 1).padStart(2, '0');
+          const day = String(postDate.getDate()).padStart(2, '0');
+          const year = String(postDate.getFullYear()).slice(-2);
+          el.innerText = `${month}/${day}/${year}`;
+        }
+      });
+    }
+
     updateStatus();
+    updatePostDates();
     setInterval(updateStatus, 60000);
+    setInterval(updatePostDates, 10000);
   </script>
 
 </body>
